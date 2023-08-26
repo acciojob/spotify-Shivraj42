@@ -156,8 +156,15 @@ public class SpotifyRepository {
             }
         }
         if(playlist==null) throw new Exception("Playlist does not exist");
-        if(creatorPlaylistMap.get(user).equals(playlist)) return playlist;
+        if(creatorPlaylistMap.containsKey(user)) return playlist;
+
         playlistListenerMap.get(playlist).add(user);
+
+        if(playlistListenerMap.containsKey(playlist)){
+            if(!playlistListenerMap.get(playlist).contains(user)){
+                playlistListenerMap.get(playlist).add(user);
+            }
+        }
         userPlaylistMap.get(user).add(playlist);
         return playlist;
 
@@ -203,6 +210,7 @@ public class SpotifyRepository {
                 MPA=artist;
             }
         }
+        if(MPA==null) return "";
         return MPA.getName();
     }
 
@@ -215,6 +223,7 @@ public class SpotifyRepository {
                 MPS=song;
             }
         }
+        if(MPS==null) return "";
         return MPS.getTitle();
     }
 }
