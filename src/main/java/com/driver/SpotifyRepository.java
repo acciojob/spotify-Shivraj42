@@ -60,7 +60,9 @@ public class SpotifyRepository {
                  break;
              }
          }
-         if(artist==null) artist=new Artist(artistName);
+         if(artist==null){
+          artist=createArtist(artistName);
+         }
          Album album= new Album(title);
          albums.add(album);
          albumSongMap.put(album, new ArrayList<>());
