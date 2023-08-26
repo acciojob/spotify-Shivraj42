@@ -2,6 +2,7 @@ package com.driver;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,7 +10,9 @@ public class SpotifyService {
 
     //Auto-wire will not work in this case, no need to change this and add autowire
 
-    SpotifyRepository spotifyRepository = new SpotifyRepository();
+   // SpotifyRepository spotifyRepository = new SpotifyRepository();
+    @Autowired
+    SpotifyRepository spotifyRepository;
 
     public User createUser(String name, String mobile){
         return spotifyRepository.createUser(name, mobile);
